@@ -6,6 +6,15 @@
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <link href="styles/main.css" rel="stylesheet" media="screen">
+    <script src="scripts/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="scripts/vendor/jquery-2.1.1.js"></script>
+    <script src="scripts/vendor/bootstrap.js"></script>
+    <script src="scripts/vendor/angular.js"></script>
+    <script src="scripts/vendor/angular-route.js"></script>
+    <script src="scripts/vendor/angular-resource.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/offcanvas.js"></script>
+    <script src="scripts/controllers/login-controller.js"></script>
 </head>
 
 <body>
@@ -14,7 +23,7 @@
     include the remember me checkbox
     -->
     <div class="container">
-        <div class="card card-container">
+        <div class="card card-container" ng-controller="LoginController">
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
             <p id="profile-name" class="profile-name-card"></p>
@@ -35,14 +44,6 @@
         </div><!-- /card-container -->
     </div><!-- /container -->
     
-	<script src="scripts/vendor/modernizr-2.8.3.min.js"></script>
-    <script src="scripts/vendor/jquery-2.1.1.js"></script>
-    <script src="scripts/vendor/bootstrap.js"></script>
-    <script src="scripts/vendor/angular.js"></script>
-    <script src="scripts/vendor/angular-route.js"></script>
-    <script src="scripts/vendor/angular-resource.js"></script>
-    <script src="scripts/app.js"></script>
-    <script src="scripts/offcanvas.js"></script>
-    <script src="scripts/controllers/login-controller.js"></script>
+	
 </body>
 </html>
