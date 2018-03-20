@@ -5,6 +5,9 @@ angular.module('app-chat', [ 'ngRoute', 'ngResource' ]).config(
 			$routeProvider.when('/', {
 				templateUrl : '/login.html',
 				controller : 'LoginController'
+			}).when('/cadastro', {
+				templateUrl : '/cadastro.html',
+				controller : 'CadastroController'
 			}).otherwise({
 				redirectTo : '/'
 			});

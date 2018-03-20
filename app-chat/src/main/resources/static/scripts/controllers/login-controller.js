@@ -8,7 +8,6 @@ angular.module('app-chat').controller('LoginController', function($scope, $http,
         	$http.get(baseUrl).success(function(data) {
     		alert(data.mensagem);
     	});
-    	
-    };
+        }
     
 });
