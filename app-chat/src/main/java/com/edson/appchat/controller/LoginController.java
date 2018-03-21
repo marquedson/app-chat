@@ -25,14 +25,17 @@ public class LoginController extends AppController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ResponseEntity<?> efetuarLogin(@RequestBody LoginUsuario login, HttpServletRequest request) throws Exception {
-		String mensagem = "";
+		Map<String, Object> map = new HashMap<String, Object>();
+		String mensagemSucesso = "";
+		String mensagemErro = "";
 		boolean isLoginValido = usuarioService.isLoginValido(login, getUsuariosCadastrados(request));
 		if (!isLoginValido) {			
-			mensagem = "Login ou Senha inválido!";
+			mensagemSucesso = "Login ou Senha inválido!";
+			map.put("mensagemErro", mensagemSucesso);
+		} else {
+			mensagemErro = "Login efetuado com sucesso!";
+			map.put("mensagemSucesso", mensagemErro);
 		}
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("mensagem", mensagem);
 		
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}

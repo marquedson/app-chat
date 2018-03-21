@@ -1,6 +1,5 @@
 
-
-angular.module('app-chat').controller('LoginController', function($scope, $http, $filter) {
+angular.module('app-chat').controller('LoginController', function($scope, $http, $state) {
 
 		$scope.email = "";
 		$scope.senha = "";
@@ -15,10 +14,20 @@ angular.module('app-chat').controller('LoginController', function($scope, $http,
         	var baseUrl = "api/chat/login";
         	
         	$http.post(baseUrl, loginUsuario).success(function(data) {
-        		$scope.mensagem = data.mensagem;
+        		if(data.mensagemSucesso) {
+        			$scope.mensagemErro = null;
+        			$scope.mensagemSucesso = data.mensagemSucesso;
+        		}else{      
+        			$scope.mensagemSucesso = null;
+        			$scope.mensagemErro = data.mensagemErro;
+        		}
         	}).error(function(data){
-        		$scope.mensagem = data.mensagem;
+        		$scope.mensagem = data.mensagemErro;
         	});
+        }
+        
+        $scope.cadastroRedirect = function () {
+        	$state.go('cadastro');
         }
     
 });

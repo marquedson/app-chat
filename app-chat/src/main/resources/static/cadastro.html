@@ -1,36 +1,14 @@
-<!DOCTYPE html>
-<html lang="pt_BR" ng-app="app-chat">
-<head>
-	<meta charset="UTF-8">
-	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <link href="styles/main.css" rel="stylesheet" media="screen">
-</head>
-
-<body>
-    <div class="container">
-        <div class="card card-container" ng-controller="CadastroController">
-            <div class="profile-name-card">Cadastro de usuário</div>
-            <div ng-show="mensagem" class="alert alert-success" role="alert">{{mensagem}}</div>
-            <form class="form-signin" ng-submit="cadastrar()">
-                <span id="reauth-email" class="reauth-email"></span>
-                <input type="text" id="apelido" ng-model="apelido" ng-blur="validarApelido()" class="form-control" placeholder="Apelido" required autofocus>
-                <input type="email" id="inputEmail" ng-model="email" class="form-control" placeholder="Email" required>
-                <input type="password" id="senha" ng-model="senha" class="form-control" placeholder="Senha" required>
-                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Cadastrar</button>
-            </form>
-        </div><!-- /card-container -->
-    </div><!-- /container -->
+  <div class="card card-container" ng-controller="CadastroController">
+      <div class="profile-name-card">Cadastro de usuário</div>
+      <div ng-show="mensagemSucesso" class="alert alert-success" role="alert">{{mensagemSucesso}}</div>
+      <div ng-show="mensagemErro" class="alert alert-danger" role="alert">{{mensagemErro}}</div>
+      <form class="form-signin" ng-submit="cadastrar()">
+          <span id="reauth-email" class="reauth-email"></span>
+          <input type="text" id="apelido" ng-model="apelido" ng-blur="validarApelido()" class="form-control" placeholder="Apelido" required autofocus>
+          <input type="email" id="inputEmail" ng-model="email" class="form-control" placeholder="Email" required>
+          <input type="password" id="senha" ng-model="senha" class="form-control" placeholder="Senha" required>
+          <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Cadastrar</button>
+          <button ng-click="voltar()" type="button" class="btn btn-default">Voltar</button>
+      </form>
+  </div>
     
-	<script src="scripts/vendor/modernizr-2.8.3.min.js"></script>
-    <script src="scripts/vendor/jquery-2.1.1.js"></script>
-    <script src="scripts/vendor/bootstrap.js"></script>
-    <script src="scripts/vendor/angular.js"></script>
-    <script src="scripts/vendor/angular-route.js"></script>
-    <script src="scripts/vendor/angular-resource.js"></script>
-    <script src="scripts/app.js"></script>
-    <script src="scripts/offcanvas.js"></script>
-    <script src="scripts/controllers/cadastro-controller.js"></script>
-</body>
-</html>

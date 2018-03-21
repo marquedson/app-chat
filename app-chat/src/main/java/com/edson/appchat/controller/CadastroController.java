@@ -39,9 +39,9 @@ public class CadastroController extends AppController {
 		
 		this.usuarioService.salvar(usuario, getUsuariosCadastrados(request));
 		
-		String mensagem = "Usuário cadastrado com sucesso!";
+		String mensagemSucesso = "Usuário cadastrado com sucesso!";
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("mensagem", mensagem);
+		map.put("mensagemSucesso", mensagemSucesso);
 		
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
@@ -49,14 +49,14 @@ public class CadastroController extends AppController {
 	@RequestMapping(value = "/validar-apelido/{apelido}", method = RequestMethod.POST)
 	public ResponseEntity<?> validarApelido(@PathVariable("apelido") String apelido, HttpServletRequest request) throws Exception {
 		
-		String mensagem = "";
+		String mensagemErro = "";
 		boolean isApelidoValido = this.usuarioService.validarApelido(apelido, getUsuariosCadastrados(request));
 		if(!isApelidoValido){
-			mensagem = "Apelido em uso por outro usuário";
+			mensagemErro = "Apelido em uso por outro usuário";
 		}
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("mensagem", mensagem);
+		map.put("mensagemErro", mensagemErro);
 		
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}

@@ -1,6 +1,6 @@
 
 
-angular.module('app-chat').controller('CadastroController', function($scope, $http, $filter) {
+angular.module('app-chat').controller('CadastroController', function($scope, $http, $state) {
 
 		$scope.apelido = "";
 		$scope.email = "";
@@ -23,19 +23,20 @@ angular.module('app-chat').controller('CadastroController', function($scope, $ht
         	
         	var baseUrl = "api/chat/cadastro";
         	$http.post(baseUrl, novoUsuario).success(function(data) {
-        		$scope.mensagem = data.mensagem;
+        		$scope.mensagemSucesso = data.mensagemSucesso;
         		limparCampos();
         	}).error(function(data){
-        		//errorCallback(data.error);
+        		
         	});
         }
         	
     	$scope.validarApelido = function() {
     		var baseUrl = "api/chat/validar-apelido";
     		$http.post(baseUrl + "/" + $scope.apelido).success(function(data) {
-    			$scope.mensagem = data.mensagem;
+    			$scope.mensagemSucesso = null;
+    			$scope.mensagemErro = data.mensagemErro;
     		}).error(function(data){
-    			//errorCallback(data.error);
+
     		});	
     	};
     	
@@ -44,4 +45,8 @@ angular.module('app-chat').controller('CadastroController', function($scope, $ht
      		$scope.email = "";
      		$scope.senha = "";
          }
+    	 
+    	 $scope.voltar = function(){
+    		 $state.go('login');
+    	 }
 });

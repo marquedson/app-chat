@@ -1,1 +1,32 @@
-<meta http-equiv="refresh" content="0;url=./login.html" />
+<!DOCTYPE html>
+<html lang="pt_BR" ng-app="app-chat">
+<head>
+	<meta charset="UTF-8">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="styles/main.css" rel="stylesheet" media="screen">
+</head>
+
+<body>
+    <div class="container">
+      <div class="row top-buffer">
+        <div class="col-xs-8 col-xs-offset-2">
+          <div ui-view></div> <!-- This is where our views will load -->
+        </div>
+      </div>
+    </div>
+    
+    <script src="scripts/vendor/angular.min.js"></script>
+	<script src="scripts/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="scripts/vendor/jquery-2.1.1.js"></script>
+    <script src="scripts/vendor/bootstrap.js"></script>
+    <script src="scripts/vendor/angular-ui-router.min.js"></script>
+    <script src="scripts/vendor/angular-resource.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/offcanvas.js"></script>
+    <script src="scripts/controllers/login-controller.js"></script>
+    <script src="scripts/controllers/cadastro-controller.js"></script>
+</body>
+</html>
