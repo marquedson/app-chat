@@ -6,11 +6,19 @@ angular.module('app-chat').controller('CadastroController', function($scope, $ht
 		$scope.email = "";
 		$scope.senha = "";
 		
+		init();
+		
+		function init(){			
+			var baseUrl = "api/chat/cadastro";
+			$http.get(baseUrl).success(function(data) {
+			});
+		}
+		
         $scope.cadastrar = function() {
         	var novoUsuario = {
-        			apelido: $scope.apelido,
-        			email:	$scope.email,
-        			senha:	$scope.senha
+    			apelido: $scope.apelido,
+    			email:	$scope.email,
+    			senha:	$scope.senha
         	}
         	
         	var baseUrl = "api/chat/cadastro";

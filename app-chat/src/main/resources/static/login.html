@@ -13,10 +13,11 @@
         <div class="card card-container" ng-controller="LoginController">
             <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
             <p id="profile-name" class="profile-name-card"></p>
+            <div ng-show="mensagem" class="alert alert-danger" role="alert">{{mensagem}}</div>
             <form class="form-signin" ng-submit="login()">
                 <span id="reauth-email" class="reauth-email"></span>
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
+                <input type="email" id="inputEmail" ng-model="email" class="form-control" placeholder="Email" required autofocus>
+                <input type="password" id="inputPassword" ng-model="senha" class="form-control" placeholder="Senha" required>
                 <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Entrar</button>
             </form><!-- /form -->
             <a href="/cadastro.html" class="forgot-password">

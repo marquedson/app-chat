@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import org.springframework.stereotype.Service;
 
+import com.edson.appchat.dominio.LoginUsuario;
 import com.edson.appchat.dominio.Usuario;
 
 @Service
@@ -21,7 +22,20 @@ public class UsuarioService {
 	 * @return
 	 */
 	public boolean validarApelido(String apelido, List<Usuario> usuariosCadastrados) {
-		Predicate<Usuario> usuario = e -> !e.getApelido().equals(apelido);
+		Predicate<Usuario> usuario = usu -> !usu.getApelido().equals(apelido);
 		return usuariosCadastrados.stream().allMatch(usuario);
+	}
+
+	public boolean isLoginValido(LoginUsuario login, List<Usuario> usuariosCadastrados) throws Exception {
+		for (Usuario usuario : usuariosCadastrados) {
+			if (isEmailESenhaValido(login, usuario)) {
+				return true; 
+			}
+		}
+		return false;
+	}
+
+	private boolean isEmailESenhaValido(LoginUsuario login, Usuario usuario) {
+		return login.getEmail().equals(usuario.getEmail()) && login.getSenha().equals(usuario.getSenha());
 	}
 }
