@@ -29,6 +29,11 @@ public class LoginController extends AppController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ResponseEntity<?> efetuarLogin(@RequestBody LoginUsuario login, HttpServletRequest request) throws Exception {
 		
+		if (getUsuariosOnline(request) == null) {			
+			List<Usuario> usuariosOnline = new ArrayList<>();
+			request.getSession().setAttribute("usuariosOnline", usuariosOnline);
+		}
+		
 		if (getUsuariosCadastrados(request) == null) {
 			List<Usuario> usuarios = new ArrayList<>();
 			request.getSession().setAttribute("usuarios", usuarios);
@@ -37,15 +42,25 @@ public class LoginController extends AppController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		String mensagemSucesso = "";
 		String mensagemErro = "";
-		boolean isLoginValido = usuarioService.isLoginValido(login, getUsuariosCadastrados(request));
-		if (!isLoginValido) {			
-			mensagemSucesso = "Login ou Senha inválido!";
-			map.put("mensagemErro", mensagemSucesso);
+		Usuario usuario = usuarioService.isLoginValido(login, getUsuariosCadastrados(request));
+		if (usuario == null) {			
+			mensagemErro = "Login ou Senha inválido!";
+			map.put("mensagemErro", mensagemErro);
 		} else {
-			mensagemErro = "Login efetuado com sucesso!";
-			map.put("mensagemSucesso", mensagemErro);
+			getUsuariosOnline(request).add(usuario);
+			mensagemSucesso = "Login efetuado com sucesso!";
+			map.put("mensagemSucesso", mensagemSucesso);
 		}
 		
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/usuarios-online", method = RequestMethod.GET)
+	public ResponseEntity<?> init(HttpServletRequest request) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("usuariosOnline", getUsuariosOnline(request));
+		
+		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+	}
+	
 }

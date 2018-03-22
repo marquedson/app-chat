@@ -25,31 +25,13 @@ angular.module('app-chat').controller('ChatController', function($scope, $http, 
 		function init(){
 			usernameForm.addEventListener('submit', connect, true)
 			messageForm.addEventListener('submit', sendMessage, true)
+			
+			var baseUrl = "api/chat/usuarios-online";
+			$http.get(baseUrl).success(function(data) {
+				$scope.usuariosOnline = data.usuariosOnline;
+			});
 		}
 		
-        $scope.login = function() {
-        	
-        	var loginUsuario = {
-    			email:	$scope.email,
-    			senha:	$scope.senha
-        	}
-        	
-        	var baseUrl = "api/chat/login";
-        	
-        	$http.post(baseUrl, loginUsuario).success(function(data) {
-        		if(data.mensagemSucesso) {
-        			$scope.mensagemErro = null;
-        			$scope.mensagemSucesso = data.mensagemSucesso;
-        			$state.go('chat');
-        		}else{      
-        			$scope.mensagemSucesso = null;
-        			$scope.mensagemErro = data.mensagemErro;
-        		}
-        	}).error(function(data){
-        		$scope.mensagem = data.mensagemErro;
-        	});
-        }
-        
         function connect(event) {
             username = document.querySelector('#name').value.trim();
 
@@ -67,10 +49,8 @@ angular.module('app-chat').controller('ChatController', function($scope, $http, 
 
 
         function onConnected() {
-            // Subscribe to the Public Topic
             stompClient.subscribe('/topic/public', onMessageReceived);
 
-            // Tell your username to the server
             stompClient.send("/app/chat.addUser",
                 {},
                 JSON.stringify({sender: username, type: 'JOIN'})
@@ -111,10 +91,10 @@ angular.module('app-chat').controller('ChatController', function($scope, $http, 
 
             if(message.type === 'JOIN') {
                 messageElement.classList.add('event-message');
-                message.content = message.sender + ' joined!';
+                message.content = message.sender + ' entrou!';
             } else if (message.type === 'LEAVE') {
                 messageElement.classList.add('event-message');
-                message.content = message.sender + ' left!';
+                message.content = message.sender + ' saiu!';
             } else {
                 messageElement.classList.add('chat-message');
 

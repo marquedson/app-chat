@@ -12,9 +12,6 @@ import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 
 import com.edson.appchat.dominio.ChatMessage;
 
-/**
- * Created by rajeevkumarsingh on 25/07/17.
- */
 @Component
 public class WebSocketEventListener {
 
@@ -25,7 +22,7 @@ public class WebSocketEventListener {
 
     @EventListener
     public void handleWebSocketConnectListener(SessionConnectedEvent event) {
-        logger.info("Received a new web socket connection");
+        logger.info("Recebido uma nova conexão web socket");
     }
 
     @EventListener
@@ -34,7 +31,7 @@ public class WebSocketEventListener {
 
         String username = (String) headerAccessor.getSessionAttributes().get("username");
         if(username != null) {
-            logger.info("User Disconnected : " + username);
+            logger.info("Usuário desconectado : " + username);
 
             ChatMessage chatMessage = new ChatMessage();
             chatMessage.setType(ChatMessage.MessageType.LEAVE);

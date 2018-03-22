@@ -15,6 +15,10 @@ public class AppController {
 		return (List<Usuario>) request.getSession().getAttribute("usuarios");
 	}
 
+	public List<Usuario> getUsuariosOnline(HttpServletRequest request) {
+		return (List<Usuario>) request.getSession().getAttribute("usuariosOnline");
+	}
+
 	public void setUsuariosCadastrados(List<Usuario> usuariosCadastrados) {
 		this.usuariosCadastrados = usuariosCadastrados;
 	}

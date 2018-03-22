@@ -26,13 +26,13 @@ public class UsuarioService {
 		return usuariosCadastrados.stream().allMatch(usuario);
 	}
 
-	public boolean isLoginValido(LoginUsuario login, List<Usuario> usuariosCadastrados) throws Exception {
+	public Usuario isLoginValido(LoginUsuario login, List<Usuario> usuariosCadastrados) throws Exception {
 		for (Usuario usuario : usuariosCadastrados) {
 			if (isEmailESenhaValido(login, usuario)) {
-				return true; 
+				return usuario; 
 			}
 		}
-		return false;
+		return null;
 	}
 
 	private boolean isEmailESenhaValido(LoginUsuario login, Usuario usuario) {

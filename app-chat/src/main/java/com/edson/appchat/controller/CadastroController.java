@@ -28,8 +28,11 @@ public class CadastroController extends AppController {
 	
 	@RequestMapping(value = "/cadastro", method = RequestMethod.GET)
 	public ResponseEntity<?> init(HttpServletRequest request) throws Exception {
-		List<Usuario> usuarios = new ArrayList<>();
-		request.getSession().setAttribute("usuarios", usuarios);
+		
+		if (getUsuariosCadastrados(request) == null) {
+			List<Usuario> usuarios = new ArrayList<>();
+			request.getSession().setAttribute("usuarios", usuarios);
+		}
 		
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
