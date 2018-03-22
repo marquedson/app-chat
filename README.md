@@ -10,3 +10,4 @@ Construir e rodar a aplicação utilizando maven.
 1. cd app-chat;
 2. mvn install;
 3. java -jar target/app-chat-0.0.1-SNAPSHOT.jar
+Acesse: localhost:8080
