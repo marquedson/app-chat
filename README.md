@@ -6,6 +6,6 @@ App de Chat utilizando Java, Spring Boot, Websocket e Angularjs.
 - Maven 3.x.x
 
 # Para rodar a aplicação:
-cd app-chat;
-mvn package ou mvn install;
-java -jar target/app-chat-0.0.1-SNAPSHOT.jar
+1. cd app-chat;
+2. mvn package ou mvn install;
+3. java -jar target/app-chat-0.0.1-SNAPSHOT.jar
