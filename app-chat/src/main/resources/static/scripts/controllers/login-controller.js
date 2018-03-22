@@ -17,6 +17,7 @@ angular.module('app-chat').controller('LoginController', function($scope, $http,
         		if(data.mensagemSucesso) {
         			$scope.mensagemErro = null;
         			$scope.mensagemSucesso = data.mensagemSucesso;
+        			$state.go('chat');
         		}else{      
         			$scope.mensagemSucesso = null;
         			$scope.mensagemErro = data.mensagemErro;
@@ -26,8 +27,5 @@ angular.module('app-chat').controller('LoginController', function($scope, $http,
         	});
         }
         
-        $scope.cadastroRedirect = function () {
-        	$state.go('cadastro');
-        }
     
 });
