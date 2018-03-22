@@ -1,5 +1,5 @@
 # app-chat
-App de Chat utilizando Java, Spring Boot, Websocket e Angularjs.
+Chat app utilizando Java, Spring Boot, Websocket e Angularjs.
 
 # Requisitos:
 - Java 1.8
